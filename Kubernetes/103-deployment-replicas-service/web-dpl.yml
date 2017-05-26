@@ -1,0 +1,27 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  name: web
+  labels:
+    deploy: web
+spec:
+  replicas: 1
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        name: web
+        app: demo
+        deploy: web
+    spec:
+      containers:
+      - name: web
+        image: hashfyre/web
+        ports:
+        - containerPort: 5000
+          protocol: TCP
+        resources: {}
+      restartPolicy: Always
+status: {}

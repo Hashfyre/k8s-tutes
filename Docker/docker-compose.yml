@@ -1,0 +1,14 @@
+version: "2"
+services:
+  web:
+    build:
+      context: .
+    image: <user>/web
+    container_name: web
+    ports:
+     - "3000:5000"
+    links:
+     - redis
+  redis:
+    image: redis:latest
+    container_name: redis
