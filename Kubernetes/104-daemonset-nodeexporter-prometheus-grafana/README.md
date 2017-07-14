@@ -1,3 +1,6 @@
+# Attribution
+Collected from [bakins/minikube-prometheus-demo](https://github.com/bakins/minikube-prometheus-demo)
+
 # Minikube and Prometheus Demo #
 
 This is a quick demo of using
