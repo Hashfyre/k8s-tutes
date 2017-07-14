@@ -61,7 +61,7 @@ everything into the default namespace.
 
 
 First, create the monitoring namespace: `kubectl create -f
-monitoring-namespace.yaml`.
+monitoring-ns.yml`.
 
 You can now list the namespaces by running `kubectl get namespaces`
 and you should see something similar to:
@@ -89,7 +89,7 @@ This allows us to update the configuration separate from the image.
 Note: there is a large debate about whether this is a "good" approach
 or not, but for demo purposes this is fine.
 
-Look at [prometheus-config.yaml](./prometheus-config.yaml). The
+Look at [prometheus-config.yml](./prometheus-config.yml). The
 relevant part is in `data/prometheus.yml`.  This is just a [Prometheus
 configuration](https://prometheus.io/docs/operating/configuration/)
 inlined into the Kubernetes manifest. Note that we are using the
@@ -98,15 +98,15 @@ in-cluster
 to access the Kubernetes API.
 
 To deploy this to the cluster run `kubectl create -f
-prometheus-config.yaml`.  You can view this by running `kubectl get
-configmap --namespace=monitoring prometheus-config -o yaml`. You can
+prometheus-config.yml`.  You can view this by running `kubectl get
+configmap --namespace=monitoring prometheus-config -o yml`. You can
 also see this in the Kubernetes Dashboard.
 
 
 ### Prometheus Pod ###
 We will use a single Prometheus
 [pod](http://kubernetes.io/docs/user-guide/pods/) for this demo.  Take
-a look at [prometheus-deployment.yaml](./prometheus-deployment.yaml).
+a look at [prometheus-dpl.yml](./prometheus-dpl.yml).
 This is a [Kubernetes Deployment](http://kubernetes.io/docs/user-guide/deployments/) that describes the image to use for
 the pod, resources, etc.  Note:
 
@@ -122,7 +122,7 @@ actually allow Prometheus to autodiscover and scrape itself.
   cases.
 
 Deploy the deployment by running `kubectl create -f
-prometheus-deployment.yaml`.  You can see this by running `kubectl get
+prometheus-dpl.yml`.  You can see this by running `kubectl get
 deployments --namespace=monitoring`.
 
 ### Prometheus Service ###
@@ -131,7 +131,7 @@ Now that we have Prometheus deployed, we actually want to get to the
 UI.  To do this, we will expose it using a
 [Kubernetes Service](http://kubernetes.io/docs/user-guide/services/).
 
-In [prometheus-service.yaml](./prometheus-service.yaml), there are a
+In [prometheus-svc.yml](./prometheus-svc.yml), there are a
 few things to note:
 
 * The label selector searches for pods that have been labeled with
@@ -142,8 +142,8 @@ port on each node in our cluster. You can query the API to get this
 port.
 
 Create the service by running `kubectl create -f
-prometheus-service.yaml`.  You can then view it by running `kubectl
-get services --namespace=monitoring prometheus -o yaml`.
+prometheus-svc.yml`.  You can then view it by running `kubectl
+get services --namespace=monitoring prometheus -o yml`.
 
 One thing to note is that you will see something like `nodePort:
 30827` in the output.  We could access the service on that port on any
@@ -160,8 +160,8 @@ Prometheus discovered itself under `kubernetes-pods`
 ### Deploying Grafana ###
 
 You can deploy [grafana](http://grafana.org/) by creating its deployment and service by
-running `kubectl create -f grafana-deployment.yaml` and `kubectl
-create -f grafana-service.yaml`. Feel free to explore via the kubectl
+running `kubectl create -f grafana-dpl.yml` and `kubectl
+create -f grafana-svc.yml`. Feel free to explore via the kubectl
 command line and/or the Dashboard.
 
 Go to  grafana by running `minikube service --namespace=monitoring
@@ -219,4 +219,3 @@ average of the nodes.
 
 Note: in a "real" implementation, we would label the pods in an easily
 queryable pattern.
-
