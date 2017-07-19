@@ -15,4 +15,4 @@
 - Confirm its working `kubectl get services --all-namespaces`
 - Share Docker Daemon with minikube `eval $(minikube docker-env)`
 
-ref:  [xhyve-driver docs](https://github.com/kubernetes/minikube/blob/master/DRIVERS.md#xhyve-driver]
+ref:  [xhyve-driver docs](https://github.com/kubernetes/minikube/blob/master/docs/drivers.md#xhyve-driver)
