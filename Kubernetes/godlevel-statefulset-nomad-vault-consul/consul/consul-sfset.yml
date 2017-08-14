@@ -110,12 +110,6 @@ spec:
         - name: consul-tls
           secret:
             secretName: consul
-  volumeClaimTemplates:
-    - metadata:
-        name: consul-data
-      spec:
-        accessModes:
-          - ReadWriteOnce
-        resources:
-          requests:
-            storage: 1Gi
+        - name: consul-data
+          persistentVolumeClaim:
+            claimName: consul-pv-claim

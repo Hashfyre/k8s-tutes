@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: consul-data
+  name: consul-pv
   labels:
     app: consul
     type: pv-local
