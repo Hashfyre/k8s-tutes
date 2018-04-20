@@ -7,8 +7,8 @@ metadata:
     type: pv-local
 spec:
   capacity:
-    storage: 1Gi
+    storage: 2Gi
   accessModes:
     - ReadWriteOnce
   hostPath:
-    path: "/Users/joy/workspace/personal/data-volume"
+    path: "/var/tmp"
